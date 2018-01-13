@@ -36,7 +36,7 @@
 
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="{{ url('/channel/'. $channel->slug) }}">Your channel</a>
+                                <a href="{{ url('/channel/'. $channel->slug) }}">My channel</a>
                                 <a href="{{ url('/channel/'. $channel->slug .'/edit') }}">Channel settings</a>
                                 
                                 <a href="{{ route('logout') }}"
