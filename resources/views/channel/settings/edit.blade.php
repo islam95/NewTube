@@ -8,7 +8,7 @@
                     <div class="panel-heading">Channel settings</div>
 
                     <div class="panel-body">
-                        <form action="/channel/{{ $channel->slug }}/edit" method="post">
+                        <form action="/channel/{{ $channel->slug }}/edit" method="post" enctype="multipart/form-data">
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" name="name"
@@ -42,6 +42,11 @@
                                         {{ $errors->first('description') }}
                                     </div>
                                 @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="image">Channel image</label>
+                                <input type="file" id="image" name="image">
                             </div>
 
                             <button type="submit" class="btn btn-default">Update</button>
