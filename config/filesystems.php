@@ -57,10 +57,18 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
+            'key' => env('S3_KEY'),
+            'secret' => env('S3_SECRET'),
+            'region' => 'eu-west-2',
             'bucket' => env('AWS_BUCKET'),
+        ],
+
+        's3_images' => [
+            'driver' => 's3',
+            'key' => env('S3_KEY'),
+            'secret' => env('S3_SECRET'),
+            'region' => 'eu-west-2',
+            'bucket' => 'images.newtube.com',
         ],
 
     ],
