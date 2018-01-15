@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class UploadImage implements ShouldQueue
 {
@@ -42,6 +43,9 @@ class UploadImage implements ShouldQueue
         $fileName = $this->file_id . '.png';
 
         // resize
+        Image::make($path)->encode('png')->fit(40, 40, function ($constraint){
+            $constraint->upsize(); // upsize if image is less than 40px
+        })->save();
 
         // upload to s3
         if (Storage::disk('s3images')->put('profile/' . $fileName, fopen($path, 'r+'))){
