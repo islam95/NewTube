@@ -24,9 +24,13 @@
     export default {
         data(){
           return {
+              uniqueId: null,
               uploading: false,
               uploadingComplete: false,
               failed: false,
+              title: 'Untitled',
+              description: null,
+              visibility: 'private'
           }
         },
         methods: {
@@ -34,8 +38,23 @@
                 this.uploading = true;
                 this.failed = false;
 
+                this.file = document.getElementById('video').files[0];
+
                 // store the metadata
+                this.store().then(() => {
+                    // upload the video
+                })
                 // upload video
+            },
+            store(){
+                return this.$http.post('/videos', {
+                    title: this.title,
+                    description: this.description,
+                    visibility: this.visibility,
+                    extension: this.file.name.split('.').pop()
+                }).then((response) => {
+                    this.uniqueId = response.json().data.uniqueId;
+                    });
             }
         },
         mounted() {
